@@ -1,35 +1,17 @@
-#include <iostream>
-#include <vector>
-#include <string>
-using namespace std;
-
-int mostWordsFound(vector<string>& sentences) {
-    int maxWords = 0;
-    for (int i = 0; i < sentences.size(); i++) {
-        int words = 1;
-        for (int j = 0; j < sentences[i].size(); j++) {
-            if (sentences[i][j] == ' ') {
-                words++;
+class Solution {
+public:
+    int mostWordsFound(vector<string>& sentences) {
+        int ans=0;
+        for(int i=0;i<sentences.size();i++)
+        {
+            int space=0;
+            string s=sentences[i];
+            for(int j=0;j<s.length();j++){
+                if(s[j]==' ') space++;
             }
+            // words = spaces + 1
+            ans=max(ans,space+1);
         }
-        if (words > maxWords) {
-            maxWords = words;
-        }
+        return ans;
     }
-    return maxWords;
-}
-
-int main() {
-    int n;
-    cout << "Enter number of sentences: ";
-    cin >> n;
-    cin.ignore();
-    vector<string> sentences(n);
-    for (int i = 0; i < n; i++) {
-        cout << "Enter sentence " << i + 1 << ": ";
-        getline(cin, sentences[i]);
-    }
-
-    cout << "Maximum words in a sentence: " << mostWordsFound(sentences) << endl;
-    return 0;
-}
+};
